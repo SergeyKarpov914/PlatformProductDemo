@@ -1,12 +1,22 @@
 # Platform-Product Solution Architecture
 
-This pattern emerged at the beginning of the year 2023. The architectural background for the Platform-Product concept can be found in the article(s) written at the same period of time:
+This architectural pattern emerged at the beginning of the year 2023 and evolved through several iterations. The main driving force behind it was the desire to extract all the assorted and repeating little patterns and coding solutions present in the multitude of similar projects and to packaged them in a single well designed and tested platform implementation. Such platform could be then reused across most of the future solutions, drastically reducing code repetition as well as untested badly designed code.
+
+The solution architecture in question has been produced, implemented and refined to a degree that it was used professionally with reasonable success.  I believe this architecture can be particularly useful for startups which frequently are challenged for producing a high quality software with little resources and time.
+
+> Please note: This public repository is not made as a coding tutorial, but rather as an illustration of Platform-Product Solution Architecture and what can be achieved if it is used in software product development. Anybody who might be interested in the implementation details, or possibly sees this Solution Architecture as potentially useful for their own projects, please contact me directly.
+
+The background for the Platform-Product concept can be traced to a few article(s) written couple of years ago:
 
 https://github.com/SergeyKarpov914/PlatformProductDemo/blob/master/docs/CleanArchitectureStudy.md
 
 Here is the latest diagram of the  Platform-Product Solution Architecture:
 
+
+
 ![(c)Clio Research In.](docs/assets/images/Platform-Product.drawio.png)
+
+
 
 ## Composition of a typical Platform-Product solution
 
@@ -33,8 +43,6 @@ Platform can be extended to accommodate connectivity to virtually limitless vari
 The Product Domain has features which can be attributed both to Platform and Product. I tend to think of Domain related more to Platform because there can be multiple Products built on the same Domain modules. Product Domain code change cadence is usually less intense than that of an Application.
 
 ## Repository structure
-
-This public repository is made not as a coding tutorial, but as an illustration of Platform-Product Solution Architecture. Anybody who might be interested in the implementation details, or possibly sees this  Solution Architecture as useful for their own projects, please contact me directly.
 
 The Platform can be used as a base for variety of products built for .Net runtime:
 
