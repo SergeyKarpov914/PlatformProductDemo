@@ -1,0 +1,76 @@
+﻿@page "/tech/datalake"
+
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@rendermode InteractiveServer
+
+@using Acsp.Demo.Core.Lib.Extension;
+@using Clio.Research.Data.Datalake.DTO
+@using Clio.Domain.ViewModel.Element;
+@using Clio.Domain.ViewModel
+@using Radzen.Blazor
+@using Radzen;
+
+@inject MultiCrudViewModel viewModel;
+
+<PageTitle>KDB (Datalake)</PageTitle>
+
+<h1>KDB (Datalake)</h1>
+
+@if (etfCorellStats == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <RadzenCard>
+                    <RadzenLabel Text="ETF Index Correlation simulated data" Component="annotation" Style="margin-left: 8px; margin-bottom: 1px; vertical-align: middle;" />
+                </RadzenCard>
+                <RadzenDataGrid Style="margin-top: 20px;"
+                                Data="@etfCorellStats"
+                                TItem="EtfCorrellElement"
+                                Density="@Density"
+                                AllowPaging="true"
+                                PageSize="50"
+                                ShowPagingSummary="true"
+                                ColumnWidth="300px"
+                                AllowFiltering="true"
+                                AllowColumnResize="true"
+                                AllowAlternatingRows="true"
+                                AllowSorting="true"
+                                PagerHorizontalAlign="HorizontalAlign.Left"
+                                FilterMode="FilterMode.Advanced"
+                                LogicalFilterOperator="LogicalFilterOperator.Or">
+                    <Columns>
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="Sym" Title="Sym" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Left" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="Ic" Title="Ic" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="Rc" Title="Rc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="Spread" Title="Spread" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="PcileSpr" Title="PcileSpr" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="MinIc" Title="MinIc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="MaxIc" Title="MaxIc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="AvgIc" Title="AvgIc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="PcileIc" Title="PcileIc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="MinRc" Title="MinRc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="MaxRc" Title="MaxRc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="AvgRc" Title="AvgRc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="EtfCorrellElement" Property="PcileRc" Title="PcileRc" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                    </Columns>
+                </RadzenDataGrid>
+                </div>
+        </div>
+    </div>
+}
+
+@code {
+    Density Density = Density.Compact;
+
+    IEnumerable<EtfCorrellElement> etfCorellStats;
+
+    protected override async Task OnInitializedAsync()
+    {
+        etfCorellStats = await viewModel.GetEtfCorrells("1M");
+    }
+}

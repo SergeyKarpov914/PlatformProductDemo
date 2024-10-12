@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "WebApiRestServer6": {
+      "commandName": "Project",
+      "commandLineArgs": "port=4410 prefix=Acsp,Clio",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

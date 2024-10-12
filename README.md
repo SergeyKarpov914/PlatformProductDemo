@@ -2,7 +2,7 @@
 
 This pattern emerged at the beginning of the year 2023. The architectural background for the Platform-Product concept can be found in the article(s) written at the same period of time:
 
-https://github.com/SergeyKarpov914/PlatformProductDemo/blob/master/Docs/CleanArchitectureStudy.md
+https://github.com/SergeyKarpov914/PlatformProductDemo/blob/master/docs/CleanArchitectureStudy.md
 
 Here is the latest diagram of the  Platform-Product Solution Architecture:
 

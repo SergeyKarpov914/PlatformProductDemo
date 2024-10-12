@@ -1,0 +1,920 @@
+﻿@page "/art/vip"
+
+<html>
+
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <meta name=Generator content="Microsoft Word 15 (filtered)">
+    <style>
+    </style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#954F72" style='word-wrap:break-word'>
+
+    <div class=WordSection1>
+
+        <p class=MsoNormal style='margin-top:15.0pt;margin-right:0in;margin-bottom:
+15.0pt;margin-left:0in;line-height:18.9pt;background:white'>
+            <b>
+                <span style='font-size:14.0pt;color:#999999'>
+                    Visiting Professor implementation
+                    pattern
+                </span>
+            </b>
+        </p>
+
+        <p class=MsoNormal style='line-height:normal;background:white'>
+            <span style='color:#333333'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='line-height:normal;background:white'>
+            <span style='color:black'>
+                <img id="Picture 48"
+                     src="images/image102.jpg"
+                     alt="Forscher clipart 13 » Clipart Station">
+            </span>
+        </p>
+
+        <p class=MsoNormal style='line-height:normal;background:white'>
+            <span style='color:#333333'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal><b>Why object oriented?</b></p>
+
+        <p class=MsoNormal>
+            Facing a question “What is the rationale behind using
+            object-oriented design?” what would you answer?
+        </p>
+
+        <p class=MsoNormal>
+            I have taken the trouble of formulating an answer, at least
+            for my own sake. And that would be:
+        </p>
+
+        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+               style='border-collapse:collapse;border:none'>
+            <tr>
+                <td width=623 valign=top style='width:467.5pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class=MsoNoSpacing><span style='color:#7030A0'>&nbsp;</span></p>
+                    <p class=MsoNoSpacing>
+                        <span style='color:#7030A0'>
+                            The reason for wrapping up
+                            the code into objects is to achieve the ease of reliable initial design and
+                            the ease of change if a better solution is found in the future, so long as
+                            the interface remains intact. To achieve that one has to do just three things:
+                        </span>
+                    </p>
+                    <p class=MsoNoSpacing><span style='color:#7030A0'>&nbsp;</span></p>
+                    <p class=MsoNoSpacing style='margin-left:.25in;text-indent:-.25in'>
+                        <span style='font-family:"Courier New";color:#7030A0'>
+                            o<span style='font:7.0pt "Times New Roman"'>
+                                &nbsp;&nbsp;
+                            </span>
+                        </span><span style='color:#7030A0'>
+                            break large problems up into
+                            smaller pieces,
+                        </span>
+                    </p>
+                    <p class=MsoNoSpacing style='margin-left:.25in;text-indent:-.25in'>
+                        <span style='font-family:"Courier New";color:#7030A0'>
+                            o<span style='font:7.0pt "Times New Roman"'>
+                                &nbsp;&nbsp;
+                            </span>
+                        </span><span style='color:#7030A0'>
+                            solve them once, preferably in a
+                            well&#8209;organized way,
+                        </span>
+                    </p>
+                    <p class=MsoNoSpacing style='margin-left:.25in;text-indent:-.25in'>
+                        <span style='font-family:"Courier New";color:#7030A0'>
+                            o<span style='font:7.0pt "Times New Roman"'>
+                                &nbsp;&nbsp;
+                            </span>
+                        </span><span style='color:#7030A0'>
+                            and not be bothered with them
+                            again.
+                        </span>
+                    </p>
+                    <p class=MsoNoSpacing style='margin-left:.25in'><span style='color:#7030A0'>&nbsp;</span></p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#7030A0'>
+                            The alternative is just to do everything inline and
+                            write piles of unmaintainable spaghetti code.
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                </td>
+            </tr>
+        </table>
+
+        <p class=MsoNoSpacing><span style='color:#7030A0'>&nbsp;</span></p>
+
+        <p class=MsoNoSpacing>&nbsp;</p>
+
+        <p class=MsoNoSpacing>
+            <b>
+                <span style='color:#202124;background:white'>
+                    Errare
+                    humanum est, perseverare autem diabolicum.
+                </span>
+            </b>
+        </p>
+
+        <p class=MsoNoSpacing><b><span style='color:#202124;background:white'>&nbsp;</span></b></p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#336666'>
+                Few years back, I was working as part of the team on
+                messaging and UI framework within Cohesion project at Lehman Brothers.  As I
+                remember, that was the first time when I’ve been facing a task of multiple
+                interface implementation, which entails very tedious and repetitive application
+                of large amounts of facilitation code needed to be carefully distributed across
+                the thick framework with complicate inheritance graph and dozens implementation
+                classes.
+            </span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#336666'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#336666'>
+                The same patterns were implemented in many places and in
+                multiple ways. Despite the best effort, the framework ended up absorbing
+                substantial number of errors. The implementation blob of code, which came out
+                as a result, had so many details, that there was not a single individuum on the
+                team who knew, or even understood them all. 
+            </span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#336666'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#336666'>As Seneka said: “</span><span style='color:#202124;
+background:white'>
+                Making mistakes is human nature, but persisting with the same
+                mistakes
+            </span><span style='color:#040C28'>is diabolical”. </span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#040C28'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#040C28'>
+                In building professional software, one cannot be so
+                arrogant as to rely on exceptional memory and stellar knowledge of computer
+                science fundamentals.
+            </span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#040C28'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#040C28'>&nbsp;</span>
+        </p>
+
+        <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+            <span style='color:#040C28'>
+                There has to be a structure, or an implementation style
+                if you will, that ensures correct software without much drama or super-humans
+                involvement. This structure needs to be designed in such way that minimizes
+            </span><span style='color:#336666'>
+                tedious and repetitive work, ensures that each pattern is
+                implemented only once and implemented the best way possible. The structure also
+                should help developer not to forget about the necessary steps which should go
+                into the correct implementation. Software created using sound implementation
+                structure should come out as testing-friendly and diagnostics-friendly.
+            </span>
+        </p>
+
+        <p class=MsoNoSpacing><b><span style='color:#202124;background:white'>&nbsp;</span></b></p>
+
+        <p class=MsoNoSpacing><b><span style='color:#202124;background:white'>&nbsp;</span></b></p>
+
+        <p class=MsoNoSpacing>&nbsp;</p>
+
+        <p class=MsoNormal><b>One interface, multiple implementations </b></p>
+
+        <p class=MsoNormal>
+            <a name=cutid1></a><span style='color:#0070C0'>
+                An interface
+                with multiple implementation classes is a common place. Just right-click on the
+                interface, let IDE implement it and then simply fill the blanks.
+            </span>Sounds
+            like a plan, but in practice it proves to be easier said than done.
+        </p>
+
+        <p class=MsoNormal>
+            <span style='color:#0070C0'>
+                Clearly there are (at least) three
+                basic problems with such approach:
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpFirst style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Each implementation class must
+                implement interface in its entirety.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Each implementation must include all
+                necessary infrastructure and facilitation code (validation, pre-processing and
+                post-processing, exception handling, instrumentation, etc.).
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpLast style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Should it be necessary to make change
+                to the interface, it must be manually propagated across all implementation
+                classes.
+            </span>
+        </p>
+
+        <p class=MsoNormal><b>&nbsp;</b></p>
+
+        <p class=MsoNormal><b>Template Method design pattern</b></p>
+
+        <p class=MsoNormal>
+            Using the <span style='color:#336666'>
+                ‘Template Method’
+                design pattern provides a solution: Abstract Base class (ABC) to be used as
+                skeleton interface implementation, with actual implementation classes derived
+                from it and implement abstract template methods.
+            </span>
+        </p>
+
+        <p class=MsoNormal>
+            <a href="https://www.dofactory.com/net/template-method-design-pattern">https://www.dofactory.com/net/template-method-design-pattern</a>
+        </p>
+
+        <p class=MsoNormal>
+            Unfortunately, <span style='color:#336666'>
+                ‘Template Method’
+                pattern implementation suggested by the resource (and by multiple others)
+                solves only part of the problem.
+            </span>
+        </p>
+
+        <p class=MsoNormal>
+            <span style='color:#336666'>
+                Yes, the ABC is the only class
+                implementing the entire interface, all derived classes implement abstract
+                template methods. But derived classes are still forced to implement all
+                abstract template methods, even if they may not need to.
+            </span>
+        </p>
+
+        <p class=MsoNormal>
+            Making template methods public allows them to be called
+            directly, without calling interface methods.
+        </p>
+
+        <p class=MsoNormal>
+            Making template methods abstract prevents default
+            implementation for them. I certainly am aware of the features of C# 8 and
+            default interface implementation. Yet that feature only became available at the
+            end of 2019, when my own solution had already been used for about a decade. Also,
+            I’m not sure how default interface implementation can help in case of abstract
+            template methods without a body.
+        </p>
+
+        <p class=MsoNormal> </p>
+
+        <p class=MsoNormal>
+            <b>
+                <span style='color:#333333'>
+                    Enter the&nbsp;Visiting
+                    Professor implementation pattern.
+                </span>
+            </b>
+        </p>
+
+        <p class=MsoNormal>
+            <b>
+                <span style='color:#333333'>
+                    <br>
+                </span>
+            </b>Working with C#, one might notice interesting way the compiler
+            creates relationship between interface method and its implementation in class.
+            Here is what Jeffrey Richter wrote about it:
+        </p>
+
+        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+               style='border-collapse:collapse;border:none'>
+            <tr>
+                <td width=623 valign=top style='width:467.5pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        The C#
+                        compiler requires that a method that implements an interface be marked as <b>public</b>.
+                        The CLR requires that interface methods be marked as virtual. If you do not
+                        explicitly mark the method as virtual in your source code, the compiler marks
+                        the method as virtual and <b>sealed</b>; this prevents a derived class from
+                        overriding the interface method. …  If you explicitly mark the method as
+                        virtual, the compiler marks the method as virtual (and leaves it unsealed);
+                        this allows a derived class to override the interface method.
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        © 2012 by
+                        Jeffrey Richter
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                </td>
+            </tr>
+        </table>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>
+            So, if I interpret this correctly, interface implementation
+            semantics is based on a notion that public interface implementation is final,
+            it should not be modified through overriding, unless you really want to.
+        </p>
+
+        <p class=MsoNormal>
+            Similarly, if a class implements an interface, that class
+            should not create other public entry points. The singular concern of interface
+            implementation should be that implementation only. Adding public functionality
+            unrelated to interface will lead to ‘S’ design principle not being honored.
+        </p>
+
+        <p class=MsoNormal>
+            But what other resources in a class do we have to provide
+            specialized implementation? Private and protected methods, of course.
+        </p>
+
+        <p class=MsoNormal>
+            There is no need to use ABC. Interface is implemented by a
+            regular class (which in the code I sometimes mark as Master class) with public
+            interface implementation sealed by default. Each interface implementation
+            public method calls a protected virtual method, which may or may not have
+            default implementation.
+        </p>
+
+        <p class=MsoNormal>
+            If derived class chooses to override that protected virtual,
+            it introduces a ‘Visiting Professor’.
+        </p>
+
+        <table class=MsoNormalTable border=1 cellpadding=0>
+            <tr>
+                <td style='padding:7.5pt 7.5pt 7.5pt 7.5pt'>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#336666'>
+                            What's in a name?<br>
+                            <br>
+                            Imagine yourself a university student subscribed to a course. At appropriate
+                            time you show up at certain auditorium and consume a lecture given by professor.
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#336666'>&nbsp;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#336666'>A professor. </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#336666'>&nbsp;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='color:#336666'>
+                            Even if you have never seen that professor before, you
+                            expect nothing less than an expert on the subject. Professor, in turn,
+                            doesn’t have to know you. He may even forget the name of the establishment.
+                            All that required is to be an expert on the subject.
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <p class=MsoNormal>
+            <span style='color:#333333'>
+                <br>
+            </span>Visiting Professor implementation pattern provides these advantage
+            points:
+        </p>
+
+        <p class=MsoListParagraphCxSpFirst style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Complete separation between business
+                logic and infrastructure logic. Business logic code, devoid from infrastructure
+                code, comes much more clean, readable, and reliable. And testable, I might add.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0;background:white'>
+                Sophisticated, fast
+                and reliable infrastructure logic. Interface implementation (Master) class is
+                done once and it is done right. Developers and users can rest assured their
+                infrastructure will always be there and will work.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Compliance with DRY principle, a way
+                to eliminate code duplication. Since each class is solely responsible for a
+                specific functionality, every code snippet can be encountered only once.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Enforcement of execution flow. Public
+                entry-point is always called, then a specialized implementation is always
+                called at exactly the right time. All preparation and follow-up code are also
+                guaranteed to be executed. Interface users cannot circumvent the sequence of
+                steps prescribed by design.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                The code and project at large will
+                have great readability and predictability. This will provide for rapid bug
+                diagnostics and fixing, as well as confidence in the integrity of the software
+                under development.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Compliance with KISS principle,
+                business logic developers will keep it simple, never bothered with:
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>Exception handling</span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>Instrumentation and profiling</span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>Checks and validation</span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>Caching and optimization</span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>Thread safety and synchronization</span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in'>
+            <span style='font-family:"Courier New";color:#0070C0'>
+                o<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Events, notifications, pre-processing,
+                and post-processing.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpMiddle style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                Infrastructure logic developers are mostly
+                business-agnostic. Frameworks can be efficiently  produced by teams, completely
+                detached from business teams organizationally and in time.
+            </span>
+        </p>
+
+        <p class=MsoListParagraphCxSpLast style='margin-left:.25in;text-indent:-.25in'>
+            <span style='font-family:Symbol;color:#0070C0'>
+                ·<span style='font:7.0pt "Times New Roman"'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </span><span style='color:#0070C0'>
+                At the end of the day, a project
+                implemented along the lines of Visiting Professor pattern comes substantially
+                smaller than another project with similar logic but done using boiler-plate
+                coding style.
+            </span>
+        </p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>
+            <b>
+                Cyclomatic complexity consideration
+                (Dispatcher-Processor)
+            </b>
+        </p>
+
+        <p class=MsoNormal>
+            A typical implementation of an interface entry point using
+            Visiting Professor pattern will look something like this pseudo-code snippet:
+        </p>
+
+        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+               style='border-collapse:collapse;border:none'>
+            <tr>
+                <td width=623 valign=top style='width:467.5pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>&nbsp;</span></p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>public</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            T
+                            EntryPoint()
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            {
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            T result =
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:blue'>default</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:black'>(T);</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>try</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            {
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            result = process();
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            }
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>catch</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            (Exception
+                            ex) { handling and re -
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:blue'>throw</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:black'> }</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>finally</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            { optional clean-up, etc. }
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>return</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> result;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>        }</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                </td>
+            </tr>
+        </table>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>
+            Important aspect illustrated by this snippet is minimal
+            cyclomatic complexity within <b><span style='color:#00B0F0'>process()</span></b>
+            method.
+        </p>
+
+        <p class=MsoNormal>
+            It must always go from entry to exit uninterrupted and to
+            return value at the exit (or just be void). There must not be return statements
+            in between. If procedure cannot be completed to its exit, it should throw
+            exception.
+        </p>
+
+        <p class=MsoNormal>
+            There should be as few as possible (if-else) forks between
+            entry and exit. There should not be premature returns. A <b>
+                <span style='color:#00B0F0'>process()</span>
+            </b> method should be designed to perform
+            a singular unit of logic, where every line of code is absolutely imperative and
+            placed there for a reason.
+        </p>
+
+        <p class=MsoNormal>
+            If <b><span style='color:#00B0F0'>EntryPoint</span></b><span style='color:#00B0F0'> </span>includes potential multiple execution paths, it
+            should be separated into multiple specialized entry points. If the interface
+            starts becoming too bulky, because of separation of entry points, a dispatcher
+            pattern should be used:
+        </p>
+
+        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+               style='border-collapse:collapse;border:none'>
+            <tr>
+                <td width=623 valign=top style='width:467.5pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>public</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            T
+                            EntryPoint(TI dataToProcess)
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            {
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            T result =
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:blue'>default</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:black'>(T);</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>try</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            {
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>switch</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            (processDispatcher(dataToProcess))
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            {
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>case</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> proc1:</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            result = process_1();
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>break</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>case</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> proc2:</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            result = process_2();
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>break</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>default</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>: </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>throw</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>new</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> Exception($</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:#A31515'>
+                            &quot;Unable
+                            to dispatch a suitable
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:#A31515'>
+                            processor for {typeof(TI)}&quot;
+                        </span><span style='font-size:9.5pt;
+  font-family:"Cascadia Mono";color:black'>);</span><span style='font-size:
+  9.5pt;font-family:"Cascadia Mono";color:#A31515'>
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            }
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            }
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>catch</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            (Exception
+                            ex) { handling and re -
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:blue'>throw</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";
+  color:black'> }</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>finally</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                            { optional clean-up, etc. }
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal;text-autospace:
+  none'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>
+                        </span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:blue'>return</span><span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'> result;</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>
+                        <span style='font-size:9.5pt;font-family:"Cascadia Mono";color:black'>        }</span>
+                    </p>
+                    <p class=MsoNormal style='margin-bottom:0in;line-height:normal'>&nbsp;</p>
+                </td>
+            </tr>
+        </table>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>
+            Again, it is important to maintain minimal cyclomatic
+            complexity within each processor method.
+        </p>
+
+        <p class=MsoNormal>
+            Following this practice will help make code 100% testable
+            and predictable.
+        </p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal><b>My take on Exception handling</b></p>
+
+        <p class=MsoNormal>
+            A class which implements interface must handle exceptions at
+            every public entry point level. My take on it is simple:
+        </p>
+
+        <p class=MsoNormal>
+            <b>
+                <span style='color:#00B0F0'>
+                    Private and protected throw,
+                    public catch.
+                </span>
+            </b>
+        </p>
+
+        <p class=MsoNormal>
+            This means that no matter what is happening within public
+            entry point, an effort needs to be made to handle exceptions at the exit of
+            that public entry point. I don’t agree with the maxim that exceptions should be
+            let bubble up the stack to a process entry point and let that process die.
+        </p>
+
+        <p class=MsoNormal>
+            Having said that, a class designer may choose to re-throw an
+            exception at the exit of a public entry point, after it is handled. There can
+            be valid design considerations for letting a caller class handle exceptions
+            produced by certain interface implementations.
+        </p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+    </div>
+
+</body>
+
+</html>

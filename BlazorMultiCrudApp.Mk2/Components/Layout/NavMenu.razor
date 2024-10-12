@@ -1,0 +1,95 @@
+﻿@using BlazorStrap.V5
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <img src="/images/Logo.png" width="40" height="40">
+        <a class="navbar-brand" href="">Clio Research Inc.</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" style="margin-top: -3rem;" onclick="document.querySelector('.navbar-toggler').click()">
+    
+    <BSCollapse IsSidebar="true" DataId="sidebar" Class="d-md-inline" OnShow="@(() => SidebarChange(true))" OnHide="@(() => SidebarChange(false))">
+
+      <nav class="bd-links" id="bd-docs-nav" style="margin-left: 20px; margin-top: 2rem;" aria-label="Docs navigation">
+        
+         <ul class="list-unstyled mb-0 py-3 pt-md-3">
+            <BSCollapse DefaultShown="true">
+                <Toggler><BSToggle IsButton="true" Class="d-inline-flex align-items-center rounded">Home</BSToggle></Toggler>
+                <Content>
+                    <ul class="list-unstyled fw-normal pb-1 small">
+                        <li><BSLink class="d-inline-flex align-items-center rounded" Url="#">Company</BSLink></li>
+                        <li><BSLink class="d-inline-flex align-items-center rounded" Url="people">People</BSLink></li>
+                    </ul>
+                </Content>
+            </BSCollapse>
+            <li class="mb-1">
+                <BSCollapse DefaultShown="@(NavManager.Uri.Contains("art/"))">
+                    <Toggler><BSToggle IsButton="true" Class="d-inline-flex align-items-center rounded">Articles</BSToggle></Toggler>
+                    <Content>
+                        <ul class="list-unstyled fw-normal pb-1 small">
+                            <li><BSLink class="d-inline-flex align-items-center rounded" Url="art/ninearts">Nine arts</BSLink></li>
+                            <li><BSLink class="d-inline-flex align-items-center rounded" Url="art/vip">Visiting professor</BSLink></li>
+                            <li><BSLink class="d-inline-flex align-items-center rounded" Url="art/platform">Platform-Product</BSLink></li>
+                        </ul>
+                    </Content>
+                </BSCollapse>
+            </li>
+              <li class="mb-1">
+                <BSCollapse DefaultShown="@(NavManager.Uri.Contains("tech/"))">
+                    <Toggler><BSToggle IsButton="true" Class="d-inline-flex align-items-center rounded">Technology</BSToggle></Toggler>
+                    <Content>
+                        <ul class="list-unstyled fw-normal pb-1 small">
+                           <li><BSLink class="d-inline-flex align-items-center rounded" Url="tech/northwind">Northwind CRUD</BSLink></li>
+                           <li><BSLink class="d-inline-flex align-items-center rounded" Url="tech/datalake">KDB CRUD</BSLink></li>
+                        </ul>
+                    </Content>
+                 </BSCollapse>
+             </li>
+        </ul>
+    </nav>
+  </BSCollapse>
+</div>
+
+
+
+    @code
+    {
+        [CascadingParameter] public MainLayout? Parent { get; set; }
+
+        private Task SidebarChange(bool state)
+        {
+            if (Parent == null) return Task.CompletedTask;
+            return Parent.InvokeSidebarAsync(state);
+        }
+    }
+
+
+@*     <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        
+        
+        <div class="nav-item px-3" >
+            <NavLink class="nav-link" href="datalake">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> KDB/Datalake read
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="sql">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> SQL Server read
+            </NavLink>
+        </div>
+    </nav>
+ *@
+
+
+
+

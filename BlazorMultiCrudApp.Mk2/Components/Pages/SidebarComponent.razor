@@ -1,0 +1,99 @@
+﻿@page "/nav"
+@rendermode InteractiveServer
+
+<div class="nav-scrollable"> 
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <a class="nav-link active fw-bold" href="sql">
+                <i class="bi bi-credit-card px-2 fw-bold text-info"></i>
+                Home
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link active fw-bold" @onclick="ShowGroup1Container" stype="cursor:pointer;" href="javascript:void()">
+                <div class="hstack gap-1">
+                    <span class="bi bi-backpack4-fill fs-3 text-center" aria-hidden="true"></span>
+                    <span>Group One</span>
+                </div>
+            </NavLink>
+            <div class="nav-lik p-2 text-white" style="margin-left:5rem; visibility:@ShowGroup1Viz">
+                <ul class="list-group">
+                    <li style="list-style:none" class="cursorStyle">
+                        <a class="nav-link active fw-bold" href="#">
+                            <div class="hstack text-wrap">
+                                <span class="bi bi-file-medical fs-5 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
+                                <span>Group one</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="cursorStyle" style="list-style:none">
+                        <a class="nav-link active fw-bold" href="datalake">
+                            <div class="hstack text-wrap">
+                                <span class="bi bi-file-medical fs-5 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
+                                <span>Datalake</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="cursorStyle" style="list-style:none">
+                        <a class="bi bi-bar-chart-fill" href="weather">
+                            <div class="hstack text-wrap">
+                                <span class="bi bi-file-medical fs-5 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
+                                <span>Sql</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link active fw-bold" @onclick="ShowGroup2Container" stype="cursor:pointer;" href="javascript:void()">
+                <div class="hstack gap-1">
+                    <span class="bi bi-backpack4-fill fs-3 text-center" aria-hidden="true"></span>
+                    <span>Group Two</span>
+                </div>
+            </NavLink>
+            <div class="nav-lik p-2 text-white" style="margin-left:5rem; visibility:@ShowGroup2Viz">
+                <ul class="list-group">
+                    <li style="list-style:none" class="cursorStyle">
+                        <a class="nav-link active fw-bold" href="#">
+                            <div class="hstack text-wrap">
+                                <span class="bi bi-file-medical fs-5 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
+                                <span>Group one</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="cursorStyle" style="list-style:none">
+                        <a class="nav-link active fw-bold" href="datalake">
+                            <div class="hstack text-wrap">
+                                <span class="bi bi-file-medical fs-5 text-center" aria-hidden="true" style="margin-top:-2rem"></span>
+                                <span>Datalake</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</div>
+
+@code {
+    private string ShowGroup1Viz = "hidden";
+    private string ShowGroup2Viz = "hidden";
+
+    public bool ShowHide1 { get; set; } = false;
+    public bool ShowHide2 { get; set; } = false;
+
+    private void ShowGroup1Container()
+    {
+        ShowHide1 = !ShowHide1;
+        ShowGroup1Viz = ShowHide1 ? "visible" : "hidden";
+    }
+    private void ShowGroup2Container()
+    {
+        ShowHide2 = !ShowHide2;
+        ShowGroup2Viz = ShowHide2 ? "visible" : "hidden";
+    }
+}
+

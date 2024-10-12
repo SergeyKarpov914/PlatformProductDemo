@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1cfd0343-663d-481e-8b7c-cb80b0ae8d60</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Service\AsyncProvider.cs" />
+    <Compile Remove="Service\Core.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Remove="Components\Pages\Counter.razor" />
+    <Content Remove="Components\Pages\NavDropdown.razor" />
+    <Content Remove="Components\Pages\SidebarComponent.razor" />
+    <Content Remove="Components\Pages\Weather.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acsp.Core.Lib" Version="2.1.3" />
+    <PackageReference Include="Acsp.Core8" Version="8.0.3" />
+    <PackageReference Include="BlazorStrap" Version="5.2.101" />
+    <PackageReference Include="BlazorStrap.V5" Version="5.2.101" />
+    <PackageReference Include="Clio.Data.Datalake.DTO" Version="2.1.3" />
+    <PackageReference Include="Clio.Data.Northwind.DTO" Version="2.1.3" />
+    <PackageReference Include="Clio.Domain.MultiCrudModel" Version="8.0.3" />
+    <PackageReference Include="Clio.Domain.NorthwindModel" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageReference Include="NetcodeHub.Packages.UI.Templates.Breeze" Version="1.0.9" />
+    <PackageReference Include="Radzen.Blazor" Version="4.34.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\clio-logo-01-removebg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Service\" />
+    <Folder Include="wwwroot\files\" />
+  </ItemGroup>
+
+</Project>

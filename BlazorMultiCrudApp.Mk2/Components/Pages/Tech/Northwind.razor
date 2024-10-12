@@ -1,0 +1,120 @@
+﻿@page "/tech/northwind"
+
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@rendermode InteractiveServer
+
+@using Acsp.Demo.Core.Lib.Extension;
+
+@using Clio.Domain.ViewModel
+@using Clio.Domain.ViewModel.Element;
+
+@using Radzen.Blazor
+@using Radzen;
+@using System.ComponentModel
+
+@inject MultiCrudViewModel viewModel;
+
+<PageTitle>Northwind Trading company</PageTitle>
+
+<h1>Northwind Trading company</h1>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <RadzenCard>
+                    <RadzenLabel Text="Order data from SQL server" Component="annotation" Style="margin-left: 8px; margin-bottom: 1px; vertical-align: middle;" />
+                </RadzenCard>
+                <RadzenDataGrid @ref="grid"
+                                Style="margin-top: 20px;"
+                                Data="@orders"
+                                Density="@Density"
+                                TItem="OrderElement"
+                                AllowFiltering="true"
+                                AllowColumnResize="true"
+                                AllowSorting="true"
+                                AllowPaging="true"
+                                PageSize="10"
+                                ShowPagingSummary="true"
+                                AllowAlternatingRows="true"
+                                RowSelect="@OnRowSelect"
+                                SelectionMode="DataGridSelectionMode.Single"
+                                @bind-Value=@selected
+                                PagerHorizontalAlign="HorizontalAlign.Left"
+                                FilterMode="FilterMode.Advanced"
+                                LogicalFilterOperator="LogicalFilterOperator.Or">
+                                
+                      <Columns>
+                        <RadzenDataGridColumn TItem="OrderElement" Property=CompanyName Title="Customer" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Left" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=ContactName Title="Contact" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=ShippedDate Title="Shipped" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=OrderDate Title="Date" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=Address Title="Address" Width="140px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=Phone Title="Phone" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=EmployeeName Title="Employee" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderElement" Property=EmployeeTitle Title="Title" Width="80px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                    </Columns>
+                </RadzenDataGrid>
+
+                <div>&nbsp;</div>
+                <div>&nbsp;</div>
+
+                <RadzenCard>
+                    <RadzenLabel Text="Order deal details" Component="annotation" Style="margin-left: 8px; margin-bottom: 1px; vertical-align: middle;" />
+                </RadzenCard>
+                <RadzenDataGrid Data="@orderDeals"
+                                Style="margin-top: 20px;"
+                                TItem="OrderDealElement"
+                                Density="@Density"
+                                PageSize="30"
+                                AllowFiltering="true"
+                                AllowColumnResize="true"
+                                AllowAlternatingRows="true"
+                                AllowSorting="true"
+                                AllowPaging="true"
+                                ShowPagingSummary="true"
+                                PagerHorizontalAlign="HorizontalAlign.Left"
+                                FilterMode="FilterMode.Advanced"
+                                LogicalFilterOperator="LogicalFilterOperator.Or"
+                                >
+                    <Columns>
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=ProductName Title="Product" Width="100px" Filterable="false" Frozen="true" TextAlign="TextAlign.Left" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=Quantity Title="Quantity" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=UnitsInStock Title="In Stock" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=OrderPrice Title="Price" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=UnitPrice Title="Reg Price" Width="60px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=CompanyName Title="Supplier" Width="120px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="OrderDealElement" Property=Address Title="Address" Width="200px" Filterable="false" Frozen="true" TextAlign="TextAlign.Right" />
+                    </Columns>
+                </RadzenDataGrid>
+
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    RadzenDataGrid<OrderElement> grid;
+    Density Density = Density.Compact;
+
+    IEnumerable<OrderElement> orders;
+    IList<OrderElement> selected;
+
+    IEnumerable<OrderDealElement> orderDeals;
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await viewModel.GetOrders();
+        await OnRowSelect(orders?.FirstOrDefault());
+    }
+
+    private async Task OnRowSelect(OrderElement order)
+    {
+        orderDeals = await viewModel.GetDeals(order.OrderID.ToString());
+    }
+}

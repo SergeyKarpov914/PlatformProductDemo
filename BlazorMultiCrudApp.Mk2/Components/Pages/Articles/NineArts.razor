@@ -1,0 +1,390 @@
+﻿@page "/art/ninearts"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+
+<PageTitle>Show File</PageTitle>
+
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink="#96607D" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-bottom:0in;line-height:normal'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'><img width=419
+height=385 id="Picture 24"
+src="images/image001.jpg"
+alt="Amazon "></span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;line-height:normal'><span lang=RU
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:22.0pt;
+font-family:"Calibri",sans-serif;color:#45B0E1'>Nine arts of software
+development</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:9.0pt;
+font-family:"Calibri",sans-serif;color:#45B0E1'>   By Sergey Karpov</span></b></p>
+
+<p class=MsoNormal align=right style='margin-bottom:0.3in;margin-left:3in;
+line-height:normal'><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>November
+8, 2023</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>This article, in its original form, was
+written few years ago. Yet, the topic seems to be still relevant, so I’ve
+unearthed it recently, did some editing and updated a few segments. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>What is the main problem software development
+faces?</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>The main problem a software developer
+encounters over the course of his/her career is a project failure. Working for
+many weeks and months, only to end up with a dysfunctional blob of code, which
+presents nothing of value.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>What could be worse than that? </span></p>
+
+<p class=MsoNormal style='line-height:normal'><img width=599 height=155
+src="images/image002.png"
+alt="BCG estimates that 70% of digital transformation efforts fall short of meeting targets. A 2020 CISQ report found that the total cost of unsuccessful development projects among US firms is an estimated $260B, while the total cost of operational failures caused by poor quality software is estimated at $1.56 trillion. The Standish Group’s 2020 CHAOS report estimates that around 66% of software projects fail. "><br clear=ALL>
+</p>
+<p <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Meanwhile, the
+cold statistics say, this unfortunate fate is awaiting us with a probability of
+60-70%.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>What makes a software product successful? </span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Here is a set of qualities, which must be
+present:</span></p>
+
+<ul>
+    <li class=MsoNoSpacing><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Functionality</span></li>
+    <li class=MsoNoSpacing><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Performance</span></li>
+    <li class=MsoNoSpacing><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Reliability</span></li>
+    <li class=MsoNoSpacing><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Maintainability</span></li>
+    <li class=MsoNoSpacing><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>Time and cost to delivery</span></li>
+</ul>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>If anyone of these qualities if missing, the
+software product is a failure, with very little (if any) usefulness for the
+sponsors of the development effort.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>What skill and knowledge are required to make
+a software product successful?</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>It may seem to be a paradox, but I would
+argue that one thing which not going to be enough is a mastery of computer
+science, and/or computer programming. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Practical computer programming usually is
+nothing more than a one-off exercise. It is done with artificially limited
+functionality, in isolated environment, with high tolerance for assumptions and
+without much consideration for any real life requirements. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>The skill of computer programmer is just a
+subset in a conglomerate of skills required for one to be a successful software
+developer. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:14.0pt;
+font-family:"Calibri",sans-serif;color:#45B0E1'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:14.0pt;
+font-family:"Calibri",sans-serif;color:#45B0E1'>Enter the nine arts of software
+development. </span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Concept</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Generating a concept. Proving a concept.
+Prototyping a concept. Somebody has to do that. And that somebody is you, the
+developer.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>The developer needs to be able to sell a
+design concept to the producers of a software project. Concept presentation
+must be optimized for the level of understanding and attention span of those
+who will eventually consume the project.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Developer must convince the subject matters
+that a project will turn into something wonderfully useful. Developer must show
+that a project actually is going to work. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Failure to do so may result in project never
+lifting off the ground. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Architecture</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Before a software project concept can be
+transferred to the design phase, it needs to be tailored to specific business
+requirements. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Architectural considerations include, but not
+limited to: </span></p>
+
+<ul>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Optimal use of available technologies and frameworks.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Connectivity resources and connection topology.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Stability, points of failure and failover plan.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Modularity and interfaces structure.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Data composition and caching.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Legacy components utilization.
+                </span>
+            </li>
+            <li class=MsoNoSpacing>
+                <span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>
+                    Scalability and performance.
+                </span>
+            </li>
+</ul>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>If architectural process is skipped, or wrong
+decisions are made at the architectural stage, that will be very difficult to
+rectify going forward.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Design</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>I can hardly remember, or even imagine, a
+successful software development project, which was not done based on “design
+first” principle. Simply having a bright idea and then start pounding code,
+hoping that problems will simply work themselves out, (virtually) never works.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Building software could be compared to making
+your way through a maze. </span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;line-height:normal'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'><img width=580
+height=406 id="Picture 22" src="images/image003.jpg"</span></p>
+<p "A person standing in front of a maze&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>You enter a maze and then just follow a
+corridor until a dead end, then turn back</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>If you are lucky, you emerge at the exit.
+Eventually. But it is unlikely you would be able to tell yourself how you got
+from one end to another. The resulting product is so shaky that it is hardly
+useful.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>If you are not so lucky, you will just keep
+running in circles and give up. Eventually. There is no product. All the money
+spent on your effort is wasted.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>On the other hand, design-first approach
+helps you look at the maze from the top. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>This way you work out an optimal route and
+gain complete control on consistently getting from entry to exit. As a result,
+a product has a very good chance to become successful.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>While design phase is active, one should also
+keep in mind the aspect of minimalism. Falling into over-engineering is
+tempting sometimes , but needs to be avoided.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Style</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Code style is a serious business. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>The code should be clean and readable.
+Development teams should establish comprehensive code style standards. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>A developer cannot be satisfied with a
+‘write-only’ code, which is so obfuscated from the beginning, that only
+original writer can understand it. After few months such code becomes
+unreadable even to its author.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Whenever an attitude such as: ‘It works and I
+cannot be bothered with cosmetics’ prevails, a software project has very little
+chance to become successful.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Then there is the aspect of complexity. The
+solution implementation absorbs complexity of a problem being solved. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Complexity that adds value or increases
+software characteristics is ‘good complexity’. This type of complexity is an
+integral part of the purpose of software development.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Complexity that makes code difficult to
+understand, modify and maintain is ‘bad complexity’. This type of complexity is
+one of the main reasons for software project failure. Bad complexity is
+originating from the incompetency on the part of a developer.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Test</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Before starting to do something, you need to
+understand how it would be possible to prove to yourself that the product does
+what it is supposed to. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>A test is not limited to exposing breaking
+points. Test is the way of facilitating functional verification. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Absence of comprehensive tests leads to
+change fear. To check change effects, you need to have dependable test routine,
+which you perform before and after a change.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Refactoring</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Software is never final. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>No matter how you think it through, you
+always find areas for improvement. The understanding of concepts and project
+goals, and ways to implement techniques, all are evolving at a very fast pace.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>To maintain a body of software and to keep it
+viable, efficient, and stable, you need to perform perpetual refactoring. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Instrumentation</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>There is the only way you can have reliable
+and predictable software. That is to know what really is going on inside. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Having blocks of code operating as black
+boxes usually leads to problems. If not disasters.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Forensics</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>In real life systems are seldom created in a
+vacuum or from clean slate and by coherent team of top class designers. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Real systems are saturated with legacy code. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>It is imperative to be able to maintain or
+even to reverse-engineer legacy code. Ther usually is valuable business logic
+which cannot be lost and should be treated with utmost respect.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Software forensics skills cover rapid
+navigation through unfamiliar code, optimization techniques to stabilize and
+streamline operations, discovering interface between legacy modules and newer
+code.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Art of Team</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Software must be structured in a way that it
+can survive after being handled by a team.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>The quality of software should not suffer
+when it is developed and maintained by multiple people. This includes
+readability, logical layout, modularity, robust source code repository and
+correct procedures for concurrent changes. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span style='font-size:14.0pt;
+font-family:"Calibri",sans-serif;color:#45B0E1'>At the end</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>What skill set makes a complete software
+developer is debatable. </span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>Some can argue that special attention needs
+to be paid to a separate art of <b>Exception</b>. There is a notion that <b>Minimalism</b>
+in design and coding needs to be separated as it’s own art. There also is a
+complicated concept of <b>Change</b> and how it should be applied to working
+code.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>But I prefer to keep things simple. The Nine
+Arts. Good enough for me.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:11.0pt;
+font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0in;line-height:normal'><span
+style='font-size:11.0pt;font-family:"Calibri",sans-serif'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
