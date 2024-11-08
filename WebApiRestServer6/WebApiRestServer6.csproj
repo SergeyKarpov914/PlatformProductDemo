@@ -27,8 +27,8 @@
   <ItemGroup>
     <PackageReference Include="Acsp.Core.Lib" Version="2.1.3" />
     <PackageReference Include="Acsp.Core6" Version="6.0.3" />
-    <PackageReference Include="Clio.Data.Northwind.DTO" Version="2.1.3" />
-    <PackageReference Include="Clio.Domain.NorthwindModel" Version="6.0.2" />
+    <PackageReference Include="Clio.Data.Northwind.DTO" Version="2.1.4" />
+    <PackageReference Include="Clio.Domain.NorthwindModel" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
   </ItemGroup>
 
