@@ -53,6 +53,8 @@ The Platform can be used as a base for variety of products built for .Net runtim
 5. Desktop WPF presentation
 6. Backend for Javascript/Typescript and Python products.
 
+> An example of Javascript front-end application, created within the Platform has been put here: https://github.com/SergeyKarpov914/PlatformProductDemo/tree/master/WebApp.JS/clio-demo-react
+
 There are currently two Product samples in the solution: an Asp.Net Core WebAPI server and Blazor Server application. When I run both executables in this solution (Server and Blazor UI) the top of the log for these projects show the assembly composition:
 
 ![(c)Clio Research In.](docs/assets/images/Runtime.png)
