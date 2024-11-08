@@ -1,10 +1,45 @@
-# Getting Started with Create React App
+# React Application based on Platform-Product Solution Architecture
+
+This React application was put together as a Demo project illustrating the 'Full Stack' capability of the Platform-Product Solution Architecture. Using exeiting API server, a JavaScript front-end was created in couple of days. This front-end displays the five Domain data collections stored in a SQL Server database. 
+
+https://github.com/SergeyKarpov914/PlatformProductDemo/blob/master/README.md
+
+This Platform-Product module diagram shows a combination of 2 products: API Server and React web application, built using the Platform:
+
+![(c)Clio Research In.](../../docs/assets/images/React-Platform-Product.drawio.png)
+
+The API Server needs to be built and stated first.
+
+The React front-end web application is based on an open source template: : https://www.wrappixel.com/templates/free-material-ui-template/
+
+To build and run it you have to use two scripts:
+
+### `npm install --legacy-peer-deps`
+### `npm run start`
+
+After which, the application should look like this:
+
+![(c)Clio Research In.](../../docs/assets/images/React-App.png)
+
+
+
+
+
+
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+npm install --legacy-peer-deps
 
 ### `npm start`
 
