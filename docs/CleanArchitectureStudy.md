@@ -69,33 +69,6 @@ In case of frameworks like EF, every change in domain model does indeed cause mi
 
 Then there is also the matter of a missing letter ‘D’ (as in SOLID). It would be interesting to consider how does Dependency Inversion factors into the ‘Clean Architecture’ context.
 
-### Modularity and packaging
-
-When you create a brand new Blazor server solution using VS2022 template, you will get a piece of software which is (almost) completely in compliance with ‘Clean Architecture’. 
-
-Yet, the solution will have what is known as ‘Monolithic’ structure.
-
-![](assets/images/Monolith.png)
-https://www.techtarget.com/whatis/definition/monolithic-architecture
-
-I would argue that ‘Monolith’ is a combination of implementation style and a style of code packaging.
-
-Monolith Implementation style is also known as ‘Code first’. Monilith packaging style can be described as “Packaging? What packaging?”.
-
-The monolith originates from the notion that task on hand is easy. There is usually somebody who says: _“We need this fast. All you have to do is …”_. And indeed, a nice and easy small implementation is produced. 
-Then come dozens of additions and alterations, without which the thing cannot be used. Obviously. And the changes are hastily made upon what seemed to be a nice and easy small implementation. Before anybody knows, there is no way back. 
-
-Monolith software that is produced using ‘code first’ approach and without much consideration for packaging, exhibits the list of well-known characteristics:
-
-- **Rigidity**, tendency for software to be difficult to change, each change causing cascade changes 
-* **Fragility**, tendency to brake in many places with every little change
-* **Immobility**, inability to reuse parts of software across projects
-* **Viscosity**, difficulty to make changes without breaking the design
-* **Opacity**, cryptic and difficult to understand code
-+ **Needless complexity and repetition**, which are self-explanatory terms
-
-The real alternative to Monolith is a ‘Design first’ and ‘Modular’ development styles.
-
 ## Software production and the players involved
 
 To address concerns about code reuse and assembly structure, I would like to touch upon the aspect of software production and the players involved.
